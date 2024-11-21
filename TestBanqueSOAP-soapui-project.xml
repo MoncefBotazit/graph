@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="e01af995-47a0-496e-b2af-e3b0cd085d15" activeEnvironment="Default" name="TestBanqueSOAP" resourceRoot="" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="86651877-2613-4d3d-bbac-471b0209f1aa" wsaVersion="NONE" name="BanqueWSSoapBinding" type="wsdl" bindingName="{http://ws.spring.rest.ma/}BanqueWSSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8082/services/ws?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8082/services/ws?wsdl"><con:part><con:url>http://localhost:8082/services/ws?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="BanqueWS" targetNamespace="http://ws.spring.rest.ma/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.spring.rest.ma/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://ws.spring.rest.ma/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="compte" type="tns:compte"/>
+      <xs:element name="deleteCompte" type="tns:deleteCompte"/>
+      <xs:element name="deleteCompteResponse" type="tns:deleteCompteResponse"/>
+      <xs:element name="getCompteById" type="tns:getCompteById"/>
+      <xs:element name="getCompteByIdResponse" type="tns:getCompteByIdResponse"/>
+      <xs:element name="getComptes" type="tns:getComptes"/>
+      <xs:element name="getComptesResponse" type="tns:getComptesResponse"/>
+      <xs:element name="saveCompte" type="tns:saveCompte"/>
+      <xs:element name="saveCompteResponse" type="tns:saveCompteResponse"/>
+      <xs:element name="updateCompte" type="tns:updateCompte"/>
+      <xs:element name="updateCompteResponse" type="tns:updateCompteResponse"/>
+      <xs:complexType name="saveCompte">
+        <xs:sequence>
+          <xs:element name="solde" type="xs:double"/>
+          <xs:element minOccurs="0" name="type" type="tns:typeCompte"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="saveCompteResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:compte"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="compte">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element name="solde" type="xs:double"/>
+          <xs:element minOccurs="0" name="dateCreation" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="type" type="tns:typeCompte"/>
+          <xs:element minOccurs="0" name="client" type="tns:client"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="client">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="comptes" nillable="true" type="tns:compte"/>
+          <xs:element minOccurs="0" name="email" type="xs:string"/>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element minOccurs="0" name="nom" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteCompte">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteCompteResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="updateCompte">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element name="solde" type="xs:double"/>
+          <xs:element minOccurs="0" name="type" type="tns:typeCompte"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="updateCompteResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:compte"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getCompteById">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getCompteByIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:compte"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getComptes">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getComptesResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:compte"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="typeCompte">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="COURANT"/>
+          <xs:enumeration value="EPARGNE"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getCompteByIdResponse">
+    <wsdl:part element="tns:getCompteByIdResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteCompte">
+    <wsdl:part element="tns:deleteCompte" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateCompte">
+    <wsdl:part element="tns:updateCompte" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveCompteResponse">
+    <wsdl:part element="tns:saveCompteResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCompteById">
+    <wsdl:part element="tns:getCompteById" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateCompteResponse">
+    <wsdl:part element="tns:updateCompteResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteCompteResponse">
+    <wsdl:part element="tns:deleteCompteResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveCompte">
+    <wsdl:part element="tns:saveCompte" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getComptesResponse">
+    <wsdl:part element="tns:getComptesResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getComptes">
+    <wsdl:part element="tns:getComptes" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CompteSoapService">
+    <wsdl:operation name="saveCompte">
+      <wsdl:input message="tns:saveCompte" name="saveCompte"></wsdl:input>
+      <wsdl:output message="tns:saveCompteResponse" name="saveCompteResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteCompte">
+      <wsdl:input message="tns:deleteCompte" name="deleteCompte"></wsdl:input>
+      <wsdl:output message="tns:deleteCompteResponse" name="deleteCompteResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateCompte">
+      <wsdl:input message="tns:updateCompte" name="updateCompte"></wsdl:input>
+      <wsdl:output message="tns:updateCompteResponse" name="updateCompteResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCompteById">
+      <wsdl:input message="tns:getCompteById" name="getCompteById"></wsdl:input>
+      <wsdl:output message="tns:getCompteByIdResponse" name="getCompteByIdResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getComptes">
+      <wsdl:input message="tns:getComptes" name="getComptes"></wsdl:input>
+      <wsdl:output message="tns:getComptesResponse" name="getComptesResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BanqueWSSoapBinding" type="tns:CompteSoapService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="saveCompte">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="saveCompte">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="saveCompteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteCompte">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteCompte">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteCompteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateCompte">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateCompte">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateCompteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCompteById">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getCompteById">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getCompteByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getComptes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getComptes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getComptesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BanqueWS">
+    <wsdl:port binding="tns:BanqueWSSoapBinding" name="CompteSoapServicePort">
+      <soap:address location="http://localhost:8082/services/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8082/services/ws</con:endpoint></con:endpoints><con:operation id="622bdb05-8784-4c69-9d08-053668290fbf" isOneWay="false" action="" name="deleteCompte" bindingOperationName="deleteCompte" type="Request-Response" outputName="deleteCompteResponse" inputName="deleteCompte" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="eb8fa668-262a-4cb9-b5e9-88f146838c67" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/services/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.spring.rest.ma/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ws:deleteCompte>\r
+         <!--Optional:-->\r
+         <id>1</id>\r
+      </ws:deleteCompte>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.spring.rest.ma/CompteSoapService/deleteCompte"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="c420a5fb-569a-4798-af58-aacfd7482f3d" isOneWay="false" action="" name="getCompteById" bindingOperationName="getCompteById" type="Request-Response" outputName="getCompteByIdResponse" inputName="getCompteById" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e525c851-7670-4de9-968f-9ca93aea0297" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/services/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.spring.rest.ma/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ws:getCompteById>\r
+         <!--Optional:-->\r
+         <id>?</id>\r
+      </ws:getCompteById>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.spring.rest.ma/CompteSoapService/getCompteById"/></con:call></con:operation><con:operation id="04e19cdd-8177-46ed-9d56-fb368aaa8937" isOneWay="false" action="" name="getComptes" bindingOperationName="getComptes" type="Request-Response" outputName="getComptesResponse" inputName="getComptes" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="38c62d36-1547-4384-b5e3-575bc7bf276e" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/services/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.spring.rest.ma/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ws:getComptes/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.spring.rest.ma/CompteSoapService/getComptes"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="6e9c08d8-b500-4005-843d-e1f80a765511" isOneWay="false" action="" name="saveCompte" bindingOperationName="saveCompte" type="Request-Response" outputName="saveCompteResponse" inputName="saveCompte" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="bcf5a5ca-034b-45b7-bd6f-0754e1e4594a" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/services/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.spring.rest.ma/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ws:saveCompte>\r
+         <solde>9000</solde>\r
+         <!--Optional:-->\r
+         <type>EPARGNE</type>\r
+      </ws:saveCompte>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.spring.rest.ma/CompteSoapService/saveCompte"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="e881b2eb-76f3-4e13-ac93-1d9c424e6aab" isOneWay="false" action="" name="updateCompte" bindingOperationName="updateCompte" type="Request-Response" outputName="updateCompteResponse" inputName="updateCompte" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="26a6d21f-1405-42b3-bbaf-5025dadd2ace" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/services/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.spring.rest.ma/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ws:updateCompte>\r
+         <!--Optional:-->\r
+         <id>4</id>\r
+         <solde>5000</solde>\r
+         <!--Optional:-->\r
+         <type>COURANT</type>\r
+      </ws:updateCompte>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.spring.rest.ma/CompteSoapService/updateCompte"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
